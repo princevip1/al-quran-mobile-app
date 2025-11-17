@@ -1,10 +1,12 @@
 import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
+import { useRouter } from 'expo-router';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Dimensions, ScrollView, StyleSheet, View } from 'react-native';
+import { Dimensions, ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { Card } from '../../src/components/Card';
 import { Text } from '../../src/components/Text';
+import { useBookmarks, useReadingProgress, useStatistics } from '../../src/hooks/useDatabase';
 import { useTheme } from '../../src/hooks/useTheme';
 
 const { width } = Dimensions.get('window');
@@ -12,6 +14,17 @@ const { width } = Dimensions.get('window');
 export default function HomeScreen() {
     const { theme } = useTheme();
     const { t } = useTranslation();
+    const router = useRouter();
+    const { bookmarks } = useBookmarks();
+    const { lastRead } = useReadingProgress();
+    const { stats } = useStatistics();
+
+    const formatReadingTime = (seconds: number) => {
+        const hours = Math.floor(seconds / 3600);
+        const minutes = Math.floor((seconds % 3600) / 60);
+        if (hours > 0) return `${hours}h ${minutes}m`;
+        return `${minutes}m`;
+    };
 
     return (
         <View style={[styles.container, { backgroundColor: theme.colors.background }]}>
@@ -39,32 +52,46 @@ export default function HomeScreen() {
                 <Text variant="h4" style={styles.sectionTitle}>
                     {t('home.lastRead')}
                 </Text>
-                <Card
-                    variant="elevated"
-                    padding="lg"
-                    onPress={() => { }}
-                    style={styles.lastReadCard}
-                >
-                    <View style={styles.lastReadHeader}>
-                        <View>
-                            <Text variant="h5">Surah Al-Fatiha</Text>
-                            <Text variant="caption">Verse 1-7</Text>
-                        </View>
-                        <View style={[styles.progressCircle, { borderColor: theme.colors.primary }]}>
-                            <Text variant="body" color={theme.colors.primary}>
-                                100%
-                            </Text>
-                        </View>
-                    </View>
-                    <View style={[styles.progressBar, { backgroundColor: theme.colors.borderLight }]}>
-                        <View
-                            style={[
-                                styles.progressFill,
-                                { backgroundColor: theme.colors.primary, width: '100%' },
-                            ]}
-                        />
-                    </View>
-                </Card>
+                {lastRead ? (
+                    <TouchableOpacity onPress={() => router.push(`/surah/${lastRead.surahNumber}`)}>
+                        <Card
+                            variant="elevated"
+                            padding="lg"
+                            style={styles.lastReadCard}
+                        >
+                            <View style={styles.lastReadHeader}>
+                                <View>
+                                    <Text variant="h5">Surah {lastRead.surahNumber}</Text>
+                                    <Text variant="caption">Verse {lastRead.ayahNumber}</Text>
+                                </View>
+                                <View style={[styles.progressCircle, { borderColor: theme.colors.primary }]}>
+                                    <Text variant="body" color={theme.colors.primary}>
+                                        {Math.round(lastRead.completionPercentage)}%
+                                    </Text>
+                                </View>
+                            </View>
+                            <View style={[styles.progressBar, { backgroundColor: theme.colors.borderLight }]}>
+                                <View
+                                    style={[
+                                        styles.progressFill,
+                                        { backgroundColor: theme.colors.primary, width: `${lastRead.completionPercentage}%` },
+                                    ]}
+                                />
+                            </View>
+                        </Card>
+                    </TouchableOpacity>
+                ) : (
+                    <Card
+                        variant="elevated"
+                        padding="lg"
+                        onPress={() => router.push('/quran')}
+                        style={styles.lastReadCard}
+                    >
+                        <Text variant="body" color={theme.colors.textSecondary} align="center">
+                            Start reading the Quran
+                        </Text>
+                    </Card>
+                )}
 
                 <Text variant="h4" style={styles.sectionTitle}>
                     {t('home.dailyVerse')}
@@ -93,7 +120,7 @@ export default function HomeScreen() {
                     <Card
                         variant="elevated"
                         padding="lg"
-                        onPress={() => { }}
+                        onPress={() => router.push('/bookmarks')}
                         style={styles.quickAccessCard}
                     >
                         <Ionicons
@@ -106,7 +133,7 @@ export default function HomeScreen() {
                             {t('nav.bookmarks')}
                         </Text>
                         <Text variant="caption" align="center" color={theme.colors.textTertiary}>
-                            5 saved
+                            {bookmarks.length} saved
                         </Text>
                     </Card>
 
@@ -138,7 +165,7 @@ export default function HomeScreen() {
                     <View style={styles.statsRow}>
                         <View style={styles.statItem}>
                             <Text variant="h3" color={theme.colors.primary}>
-                                2
+                                {stats.completedSurahs}
                             </Text>
                             <Text variant="caption" color={theme.colors.textSecondary}>
                                 {t('home.completedSurahs')}
@@ -147,7 +174,7 @@ export default function HomeScreen() {
                         <View style={[styles.statDivider, { backgroundColor: theme.colors.border }]} />
                         <View style={styles.statItem}>
                             <Text variant="h3" color={theme.colors.secondary}>
-                                45m
+                                {formatReadingTime(stats.totalReadingTime)}
                             </Text>
                             <Text variant="caption" color={theme.colors.textSecondary}>
                                 {t('home.totalReadingTime')}
@@ -156,7 +183,7 @@ export default function HomeScreen() {
                         <View style={[styles.statDivider, { backgroundColor: theme.colors.border }]} />
                         <View style={styles.statItem}>
                             <Text variant="h3" color={theme.colors.accent}>
-                                7
+                                {stats.currentStreak}
                             </Text>
                             <Text variant="caption" color={theme.colors.textSecondary}>
                                 {t('home.daysStreak')}

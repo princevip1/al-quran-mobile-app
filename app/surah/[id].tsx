@@ -17,6 +17,7 @@ import {
 import { Card, Text } from '../../src/components';
 import { SURAHS_METADATA } from '../../src/constants/surahs';
 import quranData from '../../src/data/quran_tafsir.json';
+import { useBookmarks } from '../../src/hooks/useDatabase';
 import { useTheme } from '../../src/hooks/useTheme';
 import { audioPlayerService } from '../../src/services/audioPlayerService';
 
@@ -35,6 +36,8 @@ export default function SurahReadingScreen() {
     
     const scrollViewRef = useRef<ScrollView>(null);
     const fadeAnim = useRef(new Animated.Value(0)).current;
+    
+    const { addBookmark, removeBookmark, isBookmarked } = useBookmarks();
 
     // Get surah metadata
     const surahNumber = parseInt(id as string);
@@ -48,6 +51,22 @@ export default function SurahReadingScreen() {
             useNativeDriver: true,
         }).start();
     }, [fadeAnim]);
+
+    // Load bookmarks from database
+    useEffect(() => {
+        const loadBookmarks = async () => {
+            if (!surahData) return;
+            const bookmarked = new Set<number>();
+            for (const ayah of surahData.ayahs) {
+                const isMarked = await isBookmarked(surahNumber, ayah.ayahNumber);
+                if (isMarked) {
+                    bookmarked.add(ayah.ayahNumber);
+                }
+            }
+            setBookmarkedAyahs(bookmarked);
+        };
+        loadBookmarks();
+    }, [surahNumber, surahData, isBookmarked]);
 
     if (!surahMeta || !surahData) {
         return (
@@ -78,18 +97,30 @@ export default function SurahReadingScreen() {
 
     const currentFontSize = fontSizes[fontSize];
 
-    const toggleBookmark = (ayahNumber: number) => {
-        setBookmarkedAyahs(prev => {
-            const newSet = new Set(prev);
-            if (newSet.has(ayahNumber)) {
-                newSet.delete(ayahNumber);
+    const toggleBookmark = async (ayahNumber: number) => {
+        const isCurrentlyBookmarked = bookmarkedAyahs.has(ayahNumber);
+        
+        if (isCurrentlyBookmarked) {
+            const success = await removeBookmark(surahNumber, ayahNumber);
+            if (success) {
+                setBookmarkedAyahs(prev => {
+                    const newSet = new Set(prev);
+                    newSet.delete(ayahNumber);
+                    return newSet;
+                });
                 Alert.alert(t('bookmarks.removed'), t('bookmarks.bookmarkRemoved'));
-            } else {
-                newSet.add(ayahNumber);
+            }
+        } else {
+            const success = await addBookmark(surahNumber, ayahNumber);
+            if (success) {
+                setBookmarkedAyahs(prev => {
+                    const newSet = new Set(prev);
+                    newSet.add(ayahNumber);
+                    return newSet;
+                });
                 Alert.alert(t('bookmarks.added'), t('bookmarks.bookmarkAdded'));
             }
-            return newSet;
-        });
+        }
     };
 
     const shareAyah = async (ayah: typeof surahData.ayahs[0]) => {
