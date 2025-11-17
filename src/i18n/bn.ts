@@ -15,6 +15,9 @@ export default {
       ok: 'ঠিক আছে',
       yes: 'হ্যাঁ',
       no: 'না',
+      copied: 'কপি হয়েছে!',
+      copiedToClipboard: 'ক্লিপবোর্ডে কপি হয়েছে',
+      goBack: 'ফিরে যান',
     },
     
     // Navigation
@@ -63,13 +66,16 @@ export default {
       tafsir: 'তাফসীর',
       showTranslation: 'অনুবাদ দেখান',
       showTafsir: 'তাফসীর দেখান',
+      fontSize: 'ফন্ট সাইজ',
+      surahCompleted: 'সূরা সম্পন্ন হয়েছে!',
+      completionMessage: 'আল্লাহ তোমার তেলাওয়াত কবুল করুন এবং তোমাকে হেদায়েত দান করুন।',
+      nextSurah: 'পরবর্তী সূরায় যান',
       playAudio: 'অডিও চালান',
       pauseAudio: 'অডিও থামান',
       bookmark: 'বুকমার্ক',
       share: 'শেয়ার',
       copy: 'কপি',
       addNote: 'নোট যোগ করুন',
-      fontSize: 'ফন্ট সাইজ',
       goToAyah: 'আয়াতে যান',
     },
     
@@ -82,6 +88,10 @@ export default {
       editNote: 'নোট সম্পাদনা',
       deleteBookmark: 'বুকমার্ক মুছুন',
       confirmDelete: 'আপনি কি নিশ্চিত এই বুকমার্কটি মুছতে চান?',
+      added: 'বুকমার্ক যোগ হয়েছে',
+      bookmarkAdded: 'আয়াত সফলভাবে বুকমার্ক করা হয়েছে',
+      removed: 'বুকমার্ক সরানো হয়েছে',
+      bookmarkRemoved: 'বুকমার্ক সফলভাবে সরানো হয়েছে',
     },
     
     // Audio Player
@@ -91,6 +101,8 @@ export default {
       downloadAudio: 'অডিও ডাউনলোড করুন',
       downloading: 'ডাউনলোড হচ্ছে...',
       downloaded: 'ডাউনলোড সম্পন্ন',
+      comingSoon: 'শীঘ্রই আসছে',
+      featureInProgress: 'অডিও বৈশিষ্ট্য শীঘ্রই উপলব্ধ হবে!',
       playbackSpeed: 'প্লেব্যাক গতি',
       repeat: 'পুনরাবৃত্তি',
       repeatOne: 'একটি পুনরাবৃত্তি',
@@ -170,6 +182,7 @@ export default {
     
     // Errors
     errors: {
+      surahNotFound: 'সূরা পাওয়া যায়নি',
       genericError: 'কিছু ভুল হয়েছে',
       networkError: 'নেটওয়ার্ক ত্রুটি। আপনার সংযোগ পরীক্ষা করুন।',
       loadingFailed: 'ডেটা লোড করতে ব্যর্থ',

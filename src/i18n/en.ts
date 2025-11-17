@@ -15,6 +15,9 @@ export default {
       ok: 'OK',
       yes: 'Yes',
       no: 'No',
+      copied: 'Copied!',
+      copiedToClipboard: 'Copied to clipboard',
+      goBack: 'Go Back',
     },
     
     // Navigation
@@ -63,13 +66,16 @@ export default {
       tafsir: 'Tafsir',
       showTranslation: 'Show Translation',
       showTafsir: 'Show Tafsir',
+      fontSize: 'Font Size',
+      surahCompleted: 'Surah Completed!',
+      completionMessage: 'May Allah accept your recitation and grant you guidance.',
+      nextSurah: 'Continue to Next Surah',
       playAudio: 'Play Audio',
       pauseAudio: 'Pause Audio',
       bookmark: 'Bookmark',
       share: 'Share',
       copy: 'Copy',
       addNote: 'Add Note',
-      fontSize: 'Font Size',
       goToAyah: 'Go to Ayah',
     },
     
@@ -82,6 +88,10 @@ export default {
       editNote: 'Edit Note',
       deleteBookmark: 'Delete Bookmark',
       confirmDelete: 'Are you sure you want to delete this bookmark?',
+      added: 'Bookmark Added',
+      bookmarkAdded: 'Verse bookmarked successfully',
+      removed: 'Bookmark Removed',
+      bookmarkRemoved: 'Bookmark removed successfully',
     },
     
     // Audio Player
@@ -91,6 +101,8 @@ export default {
       downloadAudio: 'Download Audio',
       downloading: 'Downloading...',
       downloaded: 'Downloaded',
+      comingSoon: 'Coming Soon',
+      featureInProgress: 'Audio feature will be available soon!',
       playbackSpeed: 'Playback Speed',
       repeat: 'Repeat',
       repeatOne: 'Repeat One',
@@ -170,6 +182,7 @@ export default {
     
     // Errors
     errors: {
+      surahNotFound: 'Surah Not Found',
       genericError: 'Something went wrong',
       networkError: 'Network error. Please check your connection.',
       loadingFailed: 'Failed to load data',
