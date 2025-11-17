@@ -19,7 +19,7 @@ export default function WelcomeScreen() {
   return (
     <View style={[styles.container, { backgroundColor: theme.colors.background }]}>
       <LinearGradient
-        colors={theme.colors.gradientPrimary}
+        colors={[theme.colors.primary, theme.colors.secondary]}
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 1 }}
         style={styles.header}
@@ -37,7 +37,7 @@ export default function WelcomeScreen() {
             align="center"
             style={styles.title}
           >
-            {t('home.title')}
+            {t('welcome.title')}
           </Text>
           <Text
             variant="bodyLarge"
@@ -45,7 +45,7 @@ export default function WelcomeScreen() {
             align="center"
             style={styles.subtitle}
           >
-            {t('home.greeting')}
+            {t('welcome.greeting')}
           </Text>
           <Text
             variant="body"
@@ -53,9 +53,7 @@ export default function WelcomeScreen() {
             align="center"
             style={styles.description}
           >
-            Complete Quran with Tafsir in Bangla & English{'\n'}
-            High-quality audio recitations{'\n'}
-            Beautiful reading experience
+            {t('welcome.description')}
           </Text>
         </View>
       </LinearGradient>
@@ -78,10 +76,10 @@ export default function WelcomeScreen() {
             />
           </View>
           <Text variant="h4" style={styles.featureTitle}>
-            Full Quran Text
+            {t('welcome.feature1Title')}
           </Text>
           <Text variant="body" color={theme.colors.textSecondary}>
-            Complete Arabic text with translations in English and Bangla
+            {t('welcome.feature1Desc')}
           </Text>
         </Card>
 
@@ -98,10 +96,10 @@ export default function WelcomeScreen() {
             />
           </View>
           <Text variant="h4" style={styles.featureTitle}>
-            Detailed Tafsir
+            {t('welcome.feature2Title')}
           </Text>
           <Text variant="body" color={theme.colors.textSecondary}>
-            In-depth explanations from Ibn Kathir and Tafheem-ul-Quran
+            {t('welcome.feature2Desc')}
           </Text>
         </Card>
 
@@ -118,10 +116,10 @@ export default function WelcomeScreen() {
             />
           </View>
           <Text variant="h4" style={styles.featureTitle}>
-            Audio Recitations
+            {t('welcome.feature3Title')}
           </Text>
           <Text variant="body" color={theme.colors.textSecondary}>
-            High-quality tilawat with offline playback support
+            {t('welcome.feature3Desc')}
           </Text>
         </Card>
 
@@ -138,10 +136,10 @@ export default function WelcomeScreen() {
             />
           </View>
           <Text variant="h4" style={styles.featureTitle}>
-            Offline First
+            {t('welcome.feature4Title')}
           </Text>
           <Text variant="body" color={theme.colors.textSecondary}>
-            Access your data anytime, anywhere without internet
+            {t('welcome.feature4Desc')}
           </Text>
         </Card>
 
@@ -150,10 +148,10 @@ export default function WelcomeScreen() {
           size="lg"
           fullWidth
           gradient
-          onPress={() => router.push('/(tabs)/audio')}
+          onPress={() => router.push('/(tabs)/home')}
           style={styles.button}
         >
-          Get Started
+          {t('welcome.getStarted')}
         </Button>
 
         <Text
@@ -161,7 +159,7 @@ export default function WelcomeScreen() {
           align="center"
           style={styles.footer}
         >
-          No ads • Privacy-first • Open Source
+          {t('welcome.footer')}
         </Text>
       </ScrollView>
     </View>

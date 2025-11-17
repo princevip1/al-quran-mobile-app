@@ -46,6 +46,23 @@ export default {
       daysStreak: 'Days Streak',
     },
     
+    // Welcome Screen
+    welcome: {
+      title: 'Al-Quran',
+      greeting: 'Assalamu Alaikum',
+      description: 'Complete Quran with Tafsir in Bangla & English\nHigh-quality audio recitations\nBeautiful reading experience',
+      feature1Title: 'Full Quran Text',
+      feature1Desc: 'Complete Arabic text with translations in English and Bangla',
+      feature2Title: 'Detailed Tafsir',
+      feature2Desc: 'In-depth explanations from Ibn Kathir and Tafheem-ul-Quran',
+      feature3Title: 'Audio Recitations',
+      feature3Desc: 'High-quality tilawat with offline playback support',
+      feature4Title: 'Offline First',
+      feature4Desc: 'Access your data anytime, anywhere without internet',
+      getStarted: 'Get Started',
+      footer: 'No ads • Privacy-first • Open Source',
+    },
+    
     // Quran Screen
     quran: {
       allSurahs: 'All Surahs ({{count}})',
