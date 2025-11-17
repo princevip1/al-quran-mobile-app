@@ -1,7 +1,7 @@
 import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
-import { useRouter } from 'expo-router';
-import React, { useState } from 'react';
+import { useFocusEffect, useRouter } from 'expo-router';
+import React, { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ActivityIndicator, Alert, FlatList, Modal, Pressable, StyleSheet, TextInput, TouchableOpacity, View } from 'react-native';
 import { Card } from '../../src/components/Card';
@@ -19,6 +19,13 @@ export default function BookmarksScreen() {
     const [selectedBookmark, setSelectedBookmark] = useState<typeof bookmarks[0] | null>(null);
     const [showNoteModal, setShowNoteModal] = useState(false);
     const [noteText, setNoteText] = useState('');
+
+    // Refresh bookmarks when screen comes into focus
+    useFocusEffect(
+        useCallback(() => {
+            refresh();
+        }, [refresh])
+    );
 
     const handleDeleteBookmark = (surahNumber: number, ayahNumber: number) => {
         Alert.alert(

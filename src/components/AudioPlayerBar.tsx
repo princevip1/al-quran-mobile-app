@@ -405,7 +405,7 @@ export function AudioPlayerBar() {
             <Ionicons name="musical-notes" size={20} color="#FFFFFF" />
             <View style={styles.miniTrackText}>
               <Text variant="body" color="#FFFFFF" weight="bold" numberOfLines={1}>
-                {t('surah')} {currentTrack.surahNumber} - {t('ayah')} {currentTrack.ayahNumber}
+                {surahName} - {t('audio.ayah')} {currentTrack.ayahNumber}
               </Text>
               <Text variant="caption" style={{ opacity: 0.8, color: '#FFFFFF' }}>
                 {currentTrack.reciter}

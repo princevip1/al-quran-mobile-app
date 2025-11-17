@@ -187,21 +187,30 @@ export default function AudioScreen() {
                             {t('audio.queue')} ({queue.length} {t('audio.ayahs')})
                         </Text>
                         <Card variant="elevated" padding="md">
-                            {queue.slice(0, 5).map((track, index) => (
-                                <View key={`${track.surahNumber}-${track.ayahNumber}`} style={styles.queueItem}>
-                                    <View style={styles.queueNumber}>
-                                        <Text variant="caption" color={theme.colors.textSecondary}>
-                                            {index + 1}
+                            {queue.slice(0, 5).map((track, index) => {
+                                // Get surah name based on current language
+                                const currentLanguage = t('languageCode');
+                                const surahMetadata = SURAHS_METADATA.find(s => s.number === track.surahNumber);
+                                const surahName = currentLanguage === 'bn' 
+                                    ? surahMetadata?.banglaName || `${t('audio.surah')} ${track.surahNumber}`
+                                    : surahMetadata?.englishName || `${t('audio.surah')} ${track.surahNumber}`;
+                                
+                                return (
+                                    <View key={`${track.surahNumber}-${track.ayahNumber}`} style={styles.queueItem}>
+                                        <View style={styles.queueNumber}>
+                                            <Text variant="caption" color={theme.colors.textSecondary}>
+                                                {index + 1}
+                                            </Text>
+                                        </View>
+                                        <Text variant="body" color={theme.colors.text} style={{ flex: 1 }}>
+                                            {surahName}, {t('audio.ayah')} {track.ayahNumber}
                                         </Text>
+                                        {index === 0 && isPlaying && (
+                                            <Ionicons name="volume-high" size={16} color={theme.colors.primary} />
+                                        )}
                                     </View>
-                                    <Text variant="body" color={theme.colors.text} style={{ flex: 1 }}>
-                                        {t('audio.surah')} {track.surahNumber}, {t('audio.ayah')} {track.ayahNumber}
-                                    </Text>
-                                    {index === 0 && isPlaying && (
-                                        <Ionicons name="volume-high" size={16} color={theme.colors.primary} />
-                                    )}
-                                </View>
-                            ))}
+                                );
+                            })}
                             {queue.length > 5 && (
                                 <Text variant="caption" color={theme.colors.textTertiary} align="center" style={{ marginTop: 8 }}>
                                     +{queue.length - 5} {t('audio.moreInQueue')}

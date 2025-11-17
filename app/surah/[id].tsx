@@ -17,32 +17,57 @@ import {
 import { Card, Text } from '../../src/components';
 import { SURAHS_METADATA } from '../../src/constants/surahs';
 import quranData from '../../src/data/quran_tafsir.json';
-import { useBookmarks } from '../../src/hooks/useDatabase';
+import { useBookmarks, useStatistics } from '../../src/hooks/useDatabase';
 import { useTheme } from '../../src/hooks/useTheme';
 import { audioPlayerService } from '../../src/services/audioPlayerService';
 
+// Type definitions for the quran data structure
+interface Ayah {
+    ayahNumber: number;
+    textArabic: string;
+    translationBangla: string;
+    translationEnglish: string;
+    tafsirBangla: string;
+    tafsirEnglish: string;
+    juz: number;
+    ruku: number;
+}
+
+interface Surah {
+    number: number;
+    ayahs: Ayah[];
+}
+
+interface QuranData {
+    surahs: Surah[];
+}
+
 type FontSize = 'small' | 'medium' | 'large';
+
+
 
 export default function SurahReadingScreen() {
     const { id } = useLocalSearchParams();
     const router = useRouter();
     const { theme } = useTheme();
     const { t, i18n } = useTranslation();
-    
+
     const [showTranslation, setShowTranslation] = useState(true);
     const [showTafsir, setShowTafsir] = useState(false);
-    const [fontSize, setFontSize] = useState<FontSize>('medium');
+    const [fontSize, setFontSize] = useState<FontSize>('small');
     const [bookmarkedAyahs, setBookmarkedAyahs] = useState<Set<number>>(new Set());
-    
+
     const scrollViewRef = useRef<ScrollView>(null);
     const fadeAnim = useRef(new Animated.Value(0)).current;
-    
+    const readingStartTime = useRef<number>(Date.now());
+
     const { addBookmark, removeBookmark, isBookmarked } = useBookmarks();
+    const { addReadingSession } = useStatistics();
 
     // Get surah metadata
     const surahNumber = parseInt(id as string);
     const surahMeta = SURAHS_METADATA.find(s => s.number === surahNumber);
-    const surahData = quranData.surahs.find(s => s.number === surahNumber);
+    const surahData = (quranData as QuranData).surahs.find(s => s.number === surahNumber);
 
     useEffect(() => {
         Animated.timing(fadeAnim, {
@@ -67,6 +92,21 @@ export default function SurahReadingScreen() {
         };
         loadBookmarks();
     }, [surahNumber, surahData, isBookmarked]);
+
+    // Track reading session
+    useEffect(() => {
+        // Reset start time when surah changes
+        readingStartTime.current = Date.now();
+
+        // Save reading session when user leaves the screen
+        return () => {
+            const duration = Math.floor((Date.now() - readingStartTime.current) / 1000);
+            // Only track if user spent at least 10 seconds reading
+            if (duration >= 10) {
+                addReadingSession(surahNumber, duration);
+            }
+        };
+    }, [surahNumber, addReadingSession]);
 
     if (!surahMeta || !surahData) {
         return (
@@ -99,7 +139,7 @@ export default function SurahReadingScreen() {
 
     const toggleBookmark = async (ayahNumber: number) => {
         const isCurrentlyBookmarked = bookmarkedAyahs.has(ayahNumber);
-        
+
         if (isCurrentlyBookmarked) {
             const success = await removeBookmark(surahNumber, ayahNumber);
             if (success) {
@@ -141,7 +181,7 @@ export default function SurahReadingScreen() {
 
     const renderAyah = (ayah: typeof surahData.ayahs[0], index: number) => {
         const isBookmarked = bookmarkedAyahs.has(ayah.ayahNumber);
-        
+
         return (
             <Animated.View
                 key={ayah.ayahNumber}
@@ -163,7 +203,7 @@ export default function SurahReadingScreen() {
                                 {ayah.ayahNumber}
                             </Text>
                         </LinearGradient>
-                        
+
                         <View style={styles.ayahActions}>
                             {/* Audio Button */}
                             <TouchableOpacity
@@ -171,19 +211,19 @@ export default function SurahReadingScreen() {
                                 onPress={() => {
                                     // Get selected reciter from audio service
                                     const reciter = audioPlayerService.getReciter();
-                                    
+
                                     // Build queue of all ayahs in this surah for continuous playback
-                                    const queue = surahData.ayahs.map(a => ({
+                                    const queue = surahData.ayahs.map((a: any) => ({
                                         surahNumber,
                                         ayahNumber: a.ayahNumber,
                                         reciter: reciter.name,
                                         url: `https://everyayah.com/data/${reciter.folder}/${String(surahNumber).padStart(3, '0')}${String(a.ayahNumber).padStart(3, '0')}.mp3`,
                                         duration: 0,
                                     }));
-                                    
+
                                     // Find the index of the current ayah
-                                    const startIndex = surahData.ayahs.findIndex(a => a.ayahNumber === ayah.ayahNumber);
-                                    
+                                    const startIndex = surahData.ayahs.findIndex((a: any) => a.ayahNumber === ayah.ayahNumber);
+
                                     // Set queue and load the track
                                     audioPlayerService.setQueue(queue, startIndex);
                                     audioPlayerService.loadTrack(queue[startIndex], true);
@@ -197,10 +237,10 @@ export default function SurahReadingScreen() {
                                 style={styles.actionButton}
                                 onPress={() => toggleBookmark(ayah.ayahNumber)}
                             >
-                                <Ionicons 
-                                    name={isBookmarked ? 'bookmark' : 'bookmark-outline'} 
-                                    size={24} 
-                                    color={isBookmarked ? theme.colors.accent : theme.colors.textSecondary} 
+                                <Ionicons
+                                    name={isBookmarked ? 'bookmark' : 'bookmark-outline'}
+                                    size={24}
+                                    color={isBookmarked ? theme.colors.accent : theme.colors.textSecondary}
                                 />
                             </TouchableOpacity>
 
@@ -224,11 +264,11 @@ export default function SurahReadingScreen() {
 
                     {/* Arabic Text */}
                     <View style={styles.arabicTextContainer}>
-                        <Text 
-                            variant="arabic" 
+                        <Text
+                            variant="arabic"
                             style={[
-                                styles.arabicText, 
-                                { 
+                                styles.arabicText,
+                                {
                                     fontSize: currentFontSize.arabic,
                                     color: theme.colors.text,
                                     lineHeight: currentFontSize.arabic * 1.8,
@@ -248,11 +288,11 @@ export default function SurahReadingScreen() {
                                     {t('reading.translation')}
                                 </Text>
                             </View>
-                            <Text 
-                                variant="body" 
+                            <Text
+                                variant="body"
                                 style={[
                                     styles.translationText,
-                                    { 
+                                    {
                                         fontSize: currentFontSize.text,
                                         color: theme.colors.text,
                                         lineHeight: currentFontSize.text * 1.6,
@@ -273,11 +313,11 @@ export default function SurahReadingScreen() {
                                     {t('reading.tafsir')}
                                 </Text>
                             </View>
-                            <Text 
-                                variant="body" 
+                            <Text
+                                variant="body"
                                 style={[
                                     styles.tafsirText,
-                                    { 
+                                    {
                                         fontSize: currentFontSize.tafsir,
                                         color: theme.colors.textSecondary,
                                         lineHeight: currentFontSize.tafsir * 1.7,
@@ -324,7 +364,7 @@ export default function SurahReadingScreen() {
                         <Text variant="h3" color="#FFFFFF">
                             {i18n.language === 'bn' ? surahMeta.banglaName : surahMeta.englishName}
                         </Text>
-                        <Text variant="caption"  style={{ opacity: 0.9 , color: '#FFFFFF' }}>
+                        <Text variant="caption" style={{ opacity: 0.9, color: '#FFFFFF' }}>
                             {i18n.language === 'bn' ? surahMeta.banglaTranslation : surahMeta.englishTranslation}
                         </Text>
                     </View>
@@ -337,14 +377,14 @@ export default function SurahReadingScreen() {
                 <View style={styles.surahInfo}>
                     <View style={styles.infoItem}>
                         <Ionicons name={surahMeta.revelationType === 'Meccan' ? 'moon' : 'sunny'} size={16} color="#FFFFFF" />
-                        <Text variant="caption" style={{ marginLeft: 4 ,color: '#FFFFFF'}}>
+                        <Text variant="caption" style={{ marginLeft: 4, color: '#FFFFFF' }}>
                             {t(`quran.${surahMeta.revelationType.toLowerCase()}`)}
                         </Text>
                     </View>
                     <View style={styles.infoDivider} />
                     <View style={styles.infoItem}>
-                                <Ionicons name="book-outline" size={16} color="#FFFFFF" />
-                                <Text variant="caption" style={{ marginLeft: 4 ,color: '#FFFFFF'}}>
+                        <Ionicons name="book-outline" size={16} color="#FFFFFF" />
+                        <Text variant="caption" style={{ marginLeft: 4, color: '#FFFFFF' }}>
                             {surahMeta.verses} {t('quran.verses')}
                         </Text>
                     </View>
@@ -377,7 +417,7 @@ export default function SurahReadingScreen() {
                                     fontSize: size === 'small' ? 10 : size === 'large' ? 14 : 12,
                                 }}
                             >
-                                A
+                               {size.charAt(0).toUpperCase()}
                             </Text>
                         </Pressable>
                     ))}
@@ -395,10 +435,10 @@ export default function SurahReadingScreen() {
                             }
                         ]}
                     >
-                        <Ionicons 
-                            name="language-outline" 
-                            size={16} 
-                            color={showTranslation ? '#FFFFFF' : theme.colors.textSecondary} 
+                        <Ionicons
+                            name="language-outline"
+                            size={16}
+                            color={showTranslation ? '#FFFFFF' : theme.colors.textSecondary}
                         />
                         <Text
                             variant="caption"
@@ -421,10 +461,10 @@ export default function SurahReadingScreen() {
                             }
                         ]}
                     >
-                        <Ionicons 
-                            name="book-outline" 
-                            size={16} 
-                            color={showTafsir ? '#FFFFFF' : theme.colors.textSecondary} 
+                        <Ionicons
+                            name="book-outline"
+                            size={16}
+                            color={showTafsir ? '#FFFFFF' : theme.colors.textSecondary}
                         />
                         <Text
                             variant="caption"
@@ -446,7 +486,7 @@ export default function SurahReadingScreen() {
                 contentContainerStyle={styles.scrollContent}
                 showsVerticalScrollIndicator={false}
             >
-                {surahData.ayahs.map((ayah, index) => renderAyah(ayah, index))}
+                {surahData.ayahs.map((ayah: any, index: number) => renderAyah(ayah, index))}
 
                 {/* Completion Message */}
                 <View style={styles.completionContainer}>
@@ -463,7 +503,7 @@ export default function SurahReadingScreen() {
                         <Text variant="body" style={{ color: theme.colors.textSecondary, marginTop: 8, textAlign: 'center' }}>
                             {t('reading.completionMessage')}
                         </Text>
-                        
+
                         {/* Next Surah Button */}
                         {surahNumber < 114 && (
                             <TouchableOpacity
