@@ -1,4 +1,5 @@
 import { Ionicons } from '@expo/vector-icons';
+import { LinearGradient } from 'expo-linear-gradient';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { ScrollView, StyleSheet, Switch, View } from 'react-native';
@@ -8,7 +9,7 @@ import { useTheme } from '../../src/hooks/useTheme';
 import { changeLanguage } from '../../src/i18n';
 
 export default function SettingsScreen() {
-    const { theme, isDark, toggleTheme, colorScheme } = useTheme();
+    const { theme, isDark, toggleTheme } = useTheme();
     const { t, i18n } = useTranslation();
 
     const handleLanguageChange = async (lang: string) => {
@@ -17,11 +18,19 @@ export default function SettingsScreen() {
 
     return (
         <View style={[styles.container, { backgroundColor: theme.colors.background }]}>
-            <View style={[styles.header, { backgroundColor: theme.colors.primary }]}>
+            <LinearGradient
+                colors={[theme.colors.primary, theme.colors.secondary]}
+                style={styles.header}
+                start={{ x: 0, y: 0 }}
+                end={{ x: 1, y: 1 }}
+            >
                 <Text variant="h3" color="#FFFFFF">
                     {t('settings.title')}
                 </Text>
-            </View>
+                <Text variant="body" color="#FFFFFF" style={{ opacity: 0.9, marginTop: 4 }}>
+                    {t('settings.subtitle')}
+                </Text>
+            </LinearGradient>
 
             <ScrollView contentContainerStyle={styles.content}>
                 <Text variant="h5" style={styles.sectionTitle}>

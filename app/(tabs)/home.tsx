@@ -29,7 +29,7 @@ export default function HomeScreen() {
     return (
         <View style={[styles.container, { backgroundColor: theme.colors.background }]}>
             <LinearGradient
-                colors={theme.colors.gradientPrimary}
+                colors={[theme.colors.primary, theme.colors.secondary]}
                 start={{ x: 0, y: 0 }}
                 end={{ x: 1, y: 1 }}
                 style={styles.header}
@@ -39,7 +39,7 @@ export default function HomeScreen() {
                         {t('home.greeting')}
                     </Text>
                     <Text variant="body" color="rgba(255,255,255,0.9)">
-                        Continue your spiritual journey
+                        {t('home.subtitle')}
                     </Text>
                 </View>
             </LinearGradient>
@@ -88,8 +88,8 @@ export default function HomeScreen() {
                         style={styles.lastReadCard}
                     >
                         <Text variant="body" color={theme.colors.textSecondary} align="center">
-                            Start reading the Quran
-                        </Text>
+                            {t('home.startReading')}
+                            </Text>
                     </Card>
                 )}
 
@@ -99,7 +99,7 @@ export default function HomeScreen() {
                 <Card
                     variant="gradient"
                     padding="lg"
-                    gradient={theme.colors.gradientSecondary}
+                    gradient={theme.colors.gradientSecondary as [string, string]}
                     style={styles.dailyVerseCard}
                 >
                     <Text variant="arabic" color="#FFFFFF" align="center" style={styles.arabicText}>
@@ -140,7 +140,7 @@ export default function HomeScreen() {
                     <Card
                         variant="elevated"
                         padding="lg"
-                        onPress={() => { }}
+                        onPress={() => router.push('/quran')}
                         style={styles.quickAccessCard}
                     >
                         <Ionicons
@@ -150,10 +150,10 @@ export default function HomeScreen() {
                             style={styles.quickAccessIcon}
                         />
                         <Text variant="body" align="center">
-                            Search
+                            {t('common.search')}
                         </Text>
                         <Text variant="caption" align="center" color={theme.colors.textTertiary}>
-                            Find verses
+                            {t('common.findVerses')}
                         </Text>
                     </Card>
                 </View>
