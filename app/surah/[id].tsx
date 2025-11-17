@@ -321,7 +321,7 @@ export default function SurahReadingScreen() {
                         <Text variant="h3" color="#FFFFFF">
                             {i18n.language === 'bn' ? surahMeta.banglaName : surahMeta.englishName}
                         </Text>
-                        <Text variant="caption" color="#FFFFFF" style={{ opacity: 0.9 }}>
+                        <Text variant="caption"  style={{ opacity: 0.9 , color: '#FFFFFF' }}>
                             {i18n.language === 'bn' ? surahMeta.banglaTranslation : surahMeta.englishTranslation}
                         </Text>
                     </View>
@@ -334,14 +334,14 @@ export default function SurahReadingScreen() {
                 <View style={styles.surahInfo}>
                     <View style={styles.infoItem}>
                         <Ionicons name={surahMeta.revelationType === 'Meccan' ? 'moon' : 'sunny'} size={16} color="#FFFFFF" />
-                        <Text variant="caption" color="#FFFFFF" style={{ marginLeft: 4 }}>
+                        <Text variant="caption" style={{ marginLeft: 4 ,color: '#FFFFFF'}}>
                             {t(`quran.${surahMeta.revelationType.toLowerCase()}`)}
                         </Text>
                     </View>
                     <View style={styles.infoDivider} />
                     <View style={styles.infoItem}>
-                        <Ionicons name="book-outline" size={16} color="#FFFFFF" />
-                        <Text variant="caption" color="#FFFFFF" style={{ marginLeft: 4 }}>
+                                <Ionicons name="book-outline" size={16} color="#FFFFFF" />
+                                <Text variant="caption" style={{ marginLeft: 4 ,color: '#FFFFFF'}}>
                             {surahMeta.verses} {t('quran.verses')}
                         </Text>
                     </View>
