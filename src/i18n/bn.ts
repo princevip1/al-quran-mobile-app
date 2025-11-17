@@ -42,7 +42,7 @@ export default {
     
     // Quran Screen
     quran: {
-      allSurahs: 'সকল সূরা',
+      allSurahs: 'সকল সূরা ({{count}})',
       searchPlaceholder: 'সূরা, আয়াত খুঁজুন...',
       meccan: 'মক্কী',
       medinan: 'মাদানী',
@@ -50,6 +50,11 @@ export default {
       juz: 'পারা',
       page: 'পৃষ্ঠা',
       revelation: 'অবতীর্ণ',
+      filter: {
+        all: 'সব',
+        meccan: 'মক্কী',
+        medinan: 'মাদানী',
+      },
     },
     
     // Reading Screen

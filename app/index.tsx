@@ -25,31 +25,31 @@ export default function WelcomeScreen() {
         style={styles.header}
       >
         <View style={styles.headerContent}>
-          <Ionicons 
-            name="book" 
-            size={80} 
-            color="#FFFFFF" 
+          <Ionicons
+            name="book"
+            size={80}
+            color="#FFFFFF"
             style={styles.icon}
           />
-          <Text 
-            variant="h1" 
-            color="#FFFFFF" 
+          <Text
+            variant="h1"
+            color="#FFFFFF"
             align="center"
             style={styles.title}
           >
             {t('home.title')}
           </Text>
-          <Text 
-            variant="bodyLarge" 
-            color="rgba(255,255,255,0.9)" 
+          <Text
+            variant="bodyLarge"
+            color="rgba(255,255,255,0.9)"
             align="center"
             style={styles.subtitle}
           >
             {t('home.greeting')}
           </Text>
-          <Text 
-            variant="body" 
-            color="rgba(255,255,255,0.8)" 
+          <Text
+            variant="body"
+            color="rgba(255,255,255,0.8)"
             align="center"
             style={styles.description}
           >
@@ -60,20 +60,20 @@ export default function WelcomeScreen() {
         </View>
       </LinearGradient>
 
-      <ScrollView 
+      <ScrollView
         style={styles.content}
         contentContainerStyle={styles.contentContainer}
         showsVerticalScrollIndicator={false}
       >
-        <Card 
-          variant="elevated" 
+        <Card
+          variant="elevated"
           padding="lg"
           style={[styles.featureCard, { marginBottom: theme.spacing.lg }]}
         >
           <View style={styles.featureIcon}>
-            <Ionicons 
-              name="book-outline" 
-              size={32} 
+            <Ionicons
+              name="book-outline"
+              size={32}
               color={theme.colors.primary}
             />
           </View>
@@ -85,15 +85,15 @@ export default function WelcomeScreen() {
           </Text>
         </Card>
 
-        <Card 
-          variant="elevated" 
+        <Card
+          variant="elevated"
           padding="lg"
           style={[styles.featureCard, { marginBottom: theme.spacing.lg }]}
         >
           <View style={styles.featureIcon}>
-            <Ionicons 
-              name="newspaper-outline" 
-              size={32} 
+            <Ionicons
+              name="newspaper-outline"
+              size={32}
               color={theme.colors.secondary}
             />
           </View>
@@ -105,15 +105,15 @@ export default function WelcomeScreen() {
           </Text>
         </Card>
 
-        <Card 
-          variant="elevated" 
+        <Card
+          variant="elevated"
           padding="lg"
           style={[styles.featureCard, { marginBottom: theme.spacing.lg }]}
         >
           <View style={styles.featureIcon}>
-            <Ionicons 
-              name="musical-notes-outline" 
-              size={32} 
+            <Ionicons
+              name="musical-notes-outline"
+              size={32}
               color={theme.colors.accent}
             />
           </View>
@@ -125,15 +125,15 @@ export default function WelcomeScreen() {
           </Text>
         </Card>
 
-        <Card 
-          variant="elevated" 
+        <Card
+          variant="elevated"
           padding="lg"
           style={[styles.featureCard, { marginBottom: theme.spacing['2xl'] }]}
         >
           <View style={styles.featureIcon}>
-            <Ionicons 
-              name="cloud-offline-outline" 
-              size={32} 
+            <Ionicons
+              name="cloud-offline-outline"
+              size={32}
               color={theme.colors.success}
             />
           </View>
@@ -156,9 +156,9 @@ export default function WelcomeScreen() {
           Get Started
         </Button>
 
-        <Text 
-          variant="caption" 
-          align="center" 
+        <Text
+          variant="caption"
+          align="center"
           style={styles.footer}
         >
           No ads • Privacy-first • Open Source

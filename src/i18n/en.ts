@@ -42,7 +42,7 @@ export default {
     
     // Quran Screen
     quran: {
-      allSurahs: 'All Surahs',
+      allSurahs: 'All Surahs ({{count}})',
       searchPlaceholder: 'Search Surah, Ayah...',
       meccan: 'Meccan',
       medinan: 'Medinan',
@@ -50,6 +50,11 @@ export default {
       juz: 'Juz',
       page: 'Page',
       revelation: 'Revelation',
+      filter: {
+        all: 'All',
+        meccan: 'Meccan',
+        medinan: 'Medinan',
+      },
     },
     
     // Reading Screen
