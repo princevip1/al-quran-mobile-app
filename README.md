@@ -1,50 +1,181 @@
-# Welcome to your Expo app 👋
+# Al-Quran & Tafsir 📖
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+A beautiful, privacy-first, offline-capable Quran application with complete Tafsir in Bangla and English.
 
-## Get started
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![React Native](https://img.shields.io/badge/React%20Native-0.81-blue.svg)](https://reactnative.dev/)
+[![Expo](https://img.shields.io/badge/Expo-~54.0-000020.svg)](https://expo.dev/)
 
-1. Install dependencies
+## ✨ Features
 
-   ```bash
-   npm install
-   ```
+- 📖 **Complete Quran**: Full Arabic text with verified sources
+- 🌍 **Translations**: English and Bangla translations
+- 📝 **Tafsir**: Detailed explanations from Ibn Kathir and Tafheem-ul-Quran
+- 🎵 **Audio Recitations**: High-quality Tilawat with offline support
+- 🔍 **Smart Search**: Fast search across Arabic text, translations, and Tafsir
+- 📌 **Bookmarks & Notes**: Save your favorite verses with personal notes
+- 🌙 **Dark Mode**: Beautiful themes for comfortable reading
+- 🌐 **Bilingual UI**: Full interface in English and Bangla
+- 📱 **Offline First**: Access everything without internet
+- 🚫 **No Ads**: Completely ad-free experience
+- 🔒 **Privacy Focused**: No tracking, no analytics by default
 
-2. Start the app
+## 🎨 Screenshots
 
-   ```bash
-   npx expo start
-   ```
+_Coming soon..._
 
-In the output, you'll find options to open the app in a
+## 🚀 Getting Started
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+### Prerequisites
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+- Node.js >= 16
+- npm or yarn
+- Expo CLI
+- Android Studio (for Android) or Xcode (for iOS)
 
-## Get a fresh project
+### Installation
 
-When you're ready, run:
-
+1. Clone the repository:
 ```bash
-npm run reset-project
+git clone https://github.com/yourusername/al-quran-and-tafsir.git
+cd al-quran-and-tafsir
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+2. Install dependencies:
+```bash
+npm install
+# or
+yarn install
+```
 
-## Learn more
+3. Start the development server:
+```bash
+npm start
+# or
+yarn start
+```
 
-To learn more about developing your project with Expo, look at the following resources:
+4. Run on your device:
+```bash
+# For Android
+npm run android
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+# For iOS (macOS only)
+npm run ios
 
-## Join the community
+# For web
+npm run web
+```
 
-Join our community of developers creating universal apps.
+## 📁 Project Structure
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+```
+al-quran-and-tafsir/
+├── app/                    # Expo Router pages
+│   ├── (tabs)/            # Tab navigation screens
+│   │   ├── home.tsx       # Home dashboard
+│   │   ├── quran.tsx      # Surah list
+│   │   ├── bookmarks.tsx  # Bookmarks
+│   │   ├── audio.tsx      # Audio player
+│   │   └── settings.tsx   # Settings
+│   ├── _layout.tsx        # Root layout
+│   └── index.tsx          # Welcome screen
+├── src/
+│   ├── components/        # Reusable UI components
+│   │   ├── Text.tsx
+│   │   ├── Button.tsx
+│   │   └── Card.tsx
+│   ├── constants/         # Theme and constants
+│   │   └── theme.ts
+│   ├── data/             # Quran data
+│   │   └── quran_tafsir.json
+│   ├── hooks/            # Custom hooks
+│   │   └── useTheme.ts
+│   ├── i18n/             # Internationalization
+│   │   ├── en.ts
+│   │   ├── bn.ts
+│   │   └── index.ts
+│   ├── services/         # Business logic
+│   └── types/            # TypeScript types
+│       └── index.ts
+├── scripts/              # Build scripts
+│   └── build_json.js
+├── assets/              # Images, fonts, etc.
+├── DATA_LICENSES.md     # Data source licenses
+└── README.md
+```
+
+## 🛠 Tech Stack
+
+- **Framework**: React Native with Expo
+- **Language**: TypeScript
+- **Navigation**: Expo Router
+- **State Management**: React Hooks
+- **Storage**: AsyncStorage, SQLite (planned)
+- **Audio**: Expo AV
+- **Styling**: StyleSheet with custom theme system
+- **Internationalization**: i18next
+
+## 📦 Build & Release
+
+### Build for Production
+
+```bash
+# Build for Android
+eas build --platform android --profile production
+
+# Build for iOS
+eas build --platform ios --profile production
+```
+
+### Prepare Release
+
+```bash
+# Generate Quran data
+npm run build:data
+
+# Run linting
+npm run lint
+```
+
+## 🌍 Data Sources
+
+All data sources are properly licensed and attributed. See [DATA_LICENSES.md](DATA_LICENSES.md) for details:
+
+- **Quran Text**: Tanzil Project
+- **English Translation**: Sahih International
+- **Bangla Translation**: Muhiuddin Khan
+- **English Tafsir**: Ibn Kathir
+- **Bangla Tafsir**: Tafheem-ul-Quran
+- **Audio**: Various reciters with CC licenses
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+1. Fork the project
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🙏 Acknowledgments
+
+- Thanks to all the scholars and organizations who have made Quranic data freely available
+- The React Native and Expo communities
+- All contributors and supporters of this project
+
+## 📧 Contact
+
+- **Email**: support@alquranapp.com
+- **GitHub**: [@yourusername](https://github.com/yourusername)
+
+---
+
+Made with ❤️ for the Muslim community
+
+May Allah accept this humble effort and make it beneficial for all.

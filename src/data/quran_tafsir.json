@@ -1,0 +1,137 @@
+{
+  "meta": {
+    "version": "1.0.0",
+    "languages": ["en", "bn"],
+    "sourceAttribution": {
+      "quranAr": "Tanzil Project - Public Domain",
+      "tafsirEn": "Ibn Kathir - Public Domain",
+      "tafsirBn": "Tafheem-ul-Quran - Public Domain",
+      "audio": "Various Reciters - CC Licensed"
+    }
+  },
+  "surahs": [
+    {
+      "number": 1,
+      "name": "الفاتحة",
+      "englishName": "Al-Fatiha",
+      "banglaName": "আল-ফাতিহা",
+      "englishNameTranslation": "The Opening",
+      "banglaNameTranslation": "সূচনা",
+      "revelationType": "Meccan",
+      "numberOfAyahs": 7,
+      "ayahs": [
+        {
+          "ayahNumber": 1,
+          "textArabic": "بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ",
+          "translationEnglish": "In the name of Allah, the Entirely Merciful, the Especially Merciful.",
+          "translationBangla": "পরম করুণাময়, অতি দয়ালু আল্লাহর নামে।",
+          "tafsirEnglish": "This verse is called the Bismillah. It is recommended to start every action with the name of Allah. The Bismillah represents the beginning of seeking refuge in Allah and asking for His help.",
+          "tafsirBangla": "এই আয়াতকে বিসমিল্লাহ বলা হয়। প্রতিটি কাজ আল্লাহর নামে শুরু করার সুপারিশ করা হয়। বিসমিল্লাহ আল্লাহর কাছে আশ্রয় প্রার্থনা এবং তাঁর সাহায্য চাওয়ার সূচনা প্রতিনিধিত্ব করে।",
+          "juz": 1,
+          "manzil": 1,
+          "ruku": 1
+        },
+        {
+          "ayahNumber": 2,
+          "textArabic": "الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ",
+          "translationEnglish": "All praise is due to Allah, Lord of the worlds.",
+          "translationBangla": "সমস্ত প্রশংসা আল্লাহর, যিনি সৃষ্টিকুলের রব্ব।",
+          "tafsirEnglish": "This verse teaches us that all praise and gratitude belong only to Allah, the Lord and Sustainer of all creation. He alone deserves worship and thanks.",
+          "tafsirBangla": "এই আয়াত আমাদের শিক্ষা দেয় যে সমস্ত প্রশংসা এবং কৃতজ্ঞতা কেবল আল্লাহরই প্রাপ্য, যিনি সমস্ত সৃষ্টির রব এবং পালনকর্তা। তিনিই একমাত্র ইবাদত এবং কৃতজ্ঞতার যোগ্য।",
+          "juz": 1,
+          "manzil": 1,
+          "ruku": 1
+        },
+        {
+          "ayahNumber": 3,
+          "textArabic": "الرَّحْمَٰنِ الرَّحِيمِ",
+          "translationEnglish": "The Entirely Merciful, the Especially Merciful.",
+          "translationBangla": "পরম করুণাময়, অতি দয়ালু।",
+          "tafsirEnglish": "These two names of Allah emphasize His boundless mercy. Ar-Rahman refers to His general mercy for all creation, while Ar-Rahim refers to His special mercy for the believers.",
+          "tafsirBangla": "আল্লাহর এই দুটি নাম তাঁর সীমাহীন রহমতের উপর জোর দেয়। আর-রহমান তাঁর সমস্ত সৃষ্টির জন্য সাধারণ রহমতকে বোঝায়, আর আর-রহীম মুমিনদের জন্য তাঁর বিশেষ রহমতকে বোঝায়।",
+          "juz": 1,
+          "manzil": 1,
+          "ruku": 1
+        },
+        {
+          "ayahNumber": 4,
+          "textArabic": "مَالِكِ يَوْمِ الدِّينِ",
+          "translationEnglish": "Master of the Day of Judgment.",
+          "translationBangla": "বিচার দিনের মালিক।",
+          "tafsirEnglish": "Allah is the sole Master and Judge on the Day of Judgment. This reminds us that we will all be held accountable for our deeds and that only Allah has the authority to judge.",
+          "tafsirBangla": "আল্লাহ হলেন বিচার দিনের একমাত্র মালিক এবং বিচারক। এটি আমাদের মনে করিয়ে দেয় যে আমরা সকলেই আমাদের কর্মের জন্য জবাবদিহি করব এবং শুধুমাত্র আল্লাহরই বিচার করার ক্ষমতা আছে।",
+          "juz": 1,
+          "manzil": 1,
+          "ruku": 1
+        },
+        {
+          "ayahNumber": 5,
+          "textArabic": "إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ",
+          "translationEnglish": "You alone we worship, and You alone we ask for help.",
+          "translationBangla": "আমরা শুধুমাত্র আপনারই ইবাদত করি এবং শুধুমাত্র আপনারই কাছে সাহায্য চাই।",
+          "tafsirEnglish": "This verse affirms the oneness of Allah in worship. We worship Him alone and seek help only from Him, acknowledging that He is the only source of true assistance.",
+          "tafsirBangla": "এই আয়াত ইবাদতে আল্লাহর একত্ববাদকে নিশ্চিত করে। আমরা শুধুমাত্র তাঁরই ইবাদত করি এবং শুধুমাত্র তাঁর কাছেই সাহায্য চাই, স্বীকার করে যে তিনিই প্রকৃত সাহায্যের একমাত্র উৎস।",
+          "juz": 1,
+          "manzil": 1,
+          "ruku": 1
+        },
+        {
+          "ayahNumber": 6,
+          "textArabic": "اهْدِنَا الصِّرَاطَ الْمُسْتَقِيمَ",
+          "translationEnglish": "Guide us to the straight path.",
+          "translationBangla": "আমাদের সরল পথ দেখান।",
+          "tafsirEnglish": "This is a supplication asking Allah to guide us to the straight path - the path of Islam, righteousness, and truth that leads to His pleasure and Paradise.",
+          "tafsirBangla": "এটি আল্লাহর কাছে প্রার্থনা যে তিনি আমাদের সরল পথ দেখান - ইসলামের পথ, ন্যায়পরায়ণতার পথ এবং সত্যের পথ যা তাঁর সন্তুষ্টি এবং জান্নাতের দিকে নিয়ে যায়।",
+          "juz": 1,
+          "manzil": 1,
+          "ruku": 1
+        },
+        {
+          "ayahNumber": 7,
+          "textArabic": "صِرَاطَ الَّذِينَ أَنْعَمْتَ عَلَيْهِمْ غَيْرِ الْمَغْضُوبِ عَلَيْهِمْ وَلَا الضَّالِّينَ",
+          "translationEnglish": "The path of those upon whom You have bestowed favor, not of those who have evoked [Your] anger or of those who are astray.",
+          "translationBangla": "তাদের পথ, যাদের উপর আপনি অনুগ্রহ করেছেন, তাদের পথ নয় যারা আপনার ক্রোধের শিকার হয়েছে এবং যারা পথভ্রষ্ট।",
+          "tafsirEnglish": "This completes the supplication, asking to be guided on the path of the righteous - the Prophets, truthful ones, martyrs, and the pious - and to avoid the paths of those who earned Allah's anger or went astray.",
+          "tafsirBangla": "এটি প্রার্থনাকে সম্পূর্ণ করে, ন্যায়পরায়ণদের পথে - নবীগণ, সত্যবাদীগণ, শহীদগণ এবং পুণ্যবানগণ - পরিচালিত হওয়ার জন্য আল্লাহর কাছে প্রার্থনা করে এবং তাদের পথ এড়াতে যারা আল্লাহর ক্রোধ অর্জন করেছে বা পথভ্রষ্ট হয়েছে।",
+          "juz": 1,
+          "manzil": 1,
+          "ruku": 1
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "name": "البقرة",
+      "englishName": "Al-Baqarah",
+      "banglaName": "আল-বাকারা",
+      "englishNameTranslation": "The Cow",
+      "banglaNameTranslation": "গাভী",
+      "revelationType": "Medinan",
+      "numberOfAyahs": 286,
+      "ayahs": [
+        {
+          "ayahNumber": 1,
+          "textArabic": "الم",
+          "translationEnglish": "Alif, Lam, Meem.",
+          "translationBangla": "আলিফ-লাম-মীম।",
+          "tafsirEnglish": "These are the mysterious letters that appear at the beginning of some surahs. Their exact meaning is known only to Allah, but they serve as a reminder of the miraculous nature of the Quran.",
+          "tafsirBangla": "এগুলি রহস্যময় অক্ষর যা কিছু সূরার শুরুতে উপস্থিত হয়। তাদের সঠিক অর্থ শুধুমাত্র আল্লাহই জানেন, তবে তারা কুরআনের অলৌকিক প্রকৃতির অনুস্মারক হিসেবে কাজ করে।",
+          "juz": 1,
+          "manzil": 1,
+          "ruku": 1
+        },
+        {
+          "ayahNumber": 2,
+          "textArabic": "ذَٰلِكَ الْكِتَابُ لَا رَيْبَ ۛ فِيهِ ۛ هُدًى لِّلْمُتَّقِينَ",
+          "translationEnglish": "This is the Book about which there is no doubt, a guidance for those conscious of Allah.",
+          "translationBangla": "এই সেই কিতাব যাতে কোনো সন্দেহ নেই, যারা আল্লাহ-সচেতন তাদের জন্য পথ প্রদর্শক।",
+          "tafsirEnglish": "The Quran is a book of absolute truth without any doubt or error. It provides guidance for the Muttaqeen - those who are God-conscious and righteous.",
+          "tafsirBangla": "কুরআন হল পরম সত্যের কিতাব যাতে কোন সন্দেহ বা ত্রুটি নেই। এটি মুত্তাকীদের জন্য পথ প্রদান করে - যারা আল্লাহ-সচেতন এবং ন্যায়পরায়ণ।",
+          "juz": 1,
+          "manzil": 1,
+          "ruku": 1
+        }
+      ]
+    }
+  ]
+}
