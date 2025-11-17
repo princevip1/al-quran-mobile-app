@@ -1,5 +1,6 @@
 export default {
   translation: {
+    languageCode: 'en',
     // Common
     common: {
       loading: 'Loading...',
@@ -117,6 +118,8 @@ export default {
     // Audio Player
     audio: {
       title: 'Audio Player',
+      surah: 'Surah',
+      ayah: 'Ayah',
       selectReciter: 'Select Reciter',
       downloadAudio: 'Download Audio',
       downloading: 'Downloading...',

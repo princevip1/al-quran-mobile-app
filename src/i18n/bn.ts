@@ -1,5 +1,6 @@
 export default {
   translation: {
+    languageCode: 'bn',
     // Common
     common: {
       loading: 'লোড হচ্ছে...',
@@ -117,6 +118,8 @@ export default {
     // Audio Player
     audio: {
       title: 'অডিও প্লেয়ার',
+      surah: 'সূরা',
+      ayah: 'আয়াত',
       selectReciter: 'কারী নির্বাচন করুন',
       downloadAudio: 'অডিও ডাউনলোড করুন',
       downloading: 'ডাউনলোড হচ্ছে...',
@@ -137,8 +140,6 @@ export default {
       browseQuran: 'কুরআন ব্রাউজ করুন',
       queue: 'সারি',
       ayahs: 'আয়াত',
-      ayah: 'আয়াত',
-      surah: 'সূরা',
       moreInQueue: 'আরও সারিতে',
       features: 'বৈশিষ্ট্য',
       feature1: '৬টি পেশাদার কারী',

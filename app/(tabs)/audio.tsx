@@ -8,7 +8,7 @@ import { Card, Text } from '../../src/components';
 import { SURAHS_METADATA } from '../../src/constants/surahs';
 import { useAudioPlayer } from '../../src/hooks/useAudioPlayer';
 import { useTheme } from '../../src/hooks/useTheme';
-import { AudioTrack } from '../../src/services/audioPlayerService';
+import { audioPlayerService, AudioTrack } from '../../src/services/audioPlayerService';
 
 // Popular Quran reciters
 const RECITERS = [
@@ -29,6 +29,11 @@ export default function AudioScreen() {
     const [selectedReciter, setSelectedReciter] = useState(RECITERS[0]);
     const [showReciterModal, setShowReciterModal] = useState(false);
     const [showSurahModal, setShowSurahModal] = useState(false);
+
+    // Initialize reciter in audio service
+    React.useEffect(() => {
+        audioPlayerService.setReciter(selectedReciter.name, selectedReciter.folder);
+    }, []);
 
     const handlePlaySurah = (surahNumber: number) => {
         const surah = SURAHS_METADATA.find(s => s.number === surahNumber);
@@ -270,6 +275,7 @@ export default function AudioScreen() {
                                 key={reciter.id}
                                 onPress={() => {
                                     setSelectedReciter(reciter);
+                                    audioPlayerService.setReciter(reciter.name, reciter.folder);
                                     setShowReciterModal(false);
                                 }}
                             >

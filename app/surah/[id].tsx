@@ -169,12 +169,15 @@ export default function SurahReadingScreen() {
                             <TouchableOpacity
                                 style={styles.actionButton}
                                 onPress={() => {
+                                    // Get selected reciter from audio service
+                                    const reciter = audioPlayerService.getReciter();
+                                    
                                     // Build queue of all ayahs in this surah for continuous playback
                                     const queue = surahData.ayahs.map(a => ({
                                         surahNumber,
                                         ayahNumber: a.ayahNumber,
-                                        reciter: 'Abdul Basit',
-                                        url: `https://everyayah.com/data/Abdul_Basit_Murattal_192kbps/${String(surahNumber).padStart(3, '0')}${String(a.ayahNumber).padStart(3, '0')}.mp3`,
+                                        reciter: reciter.name,
+                                        url: `https://everyayah.com/data/${reciter.folder}/${String(surahNumber).padStart(3, '0')}${String(a.ayahNumber).padStart(3, '0')}.mp3`,
                                         duration: 0,
                                     }));
                                     

@@ -33,6 +33,10 @@ class AudioPlayerService {
   private listeners: Set<(state: PlaybackState) => void> = new Set();
   private queue: AudioTrack[] = [];
   private currentIndex: number = -1;
+  private selectedReciter = {
+    name: 'Abdul Basit',
+    folder: 'Abdul_Basit_Murattal_192kbps'
+  };
   private playbackState: PlaybackState = {
     isPlaying: false,
     isLoading: false,
@@ -244,14 +248,24 @@ class AudioPlayerService {
   }
 
   async stop(): Promise<void> {
-    if (!this.sound) return;
-
-    try {
-      await this.sound.stopAsync();
-      await this.sound.setPositionAsync(0);
-    } catch (error) {
-      console.error('Failed to stop:', error);
+    if (this.sound) {
+      try {
+        await this.sound.stopAsync();
+        await this.sound.unloadAsync();
+        this.sound = null;
+      } catch (error) {
+        console.error('Failed to stop:', error);
+      }
     }
+    
+    this.currentTrack = null;
+    this.updateState({
+      isPlaying: false,
+      isLoading: false,
+      currentTrack: null,
+      position: 0,
+      duration: 0,
+    });
   }
 
   async cleanup(): Promise<void> {
@@ -335,6 +349,14 @@ class AudioPlayerService {
 
   getCurrentTrack(): AudioTrack | null {
     return this.currentTrack;
+  }
+
+  setReciter(name: string, folder: string): void {
+    this.selectedReciter = { name, folder };
+  }
+
+  getReciter(): { name: string; folder: string } {
+    return this.selectedReciter;
   }
 }
 
